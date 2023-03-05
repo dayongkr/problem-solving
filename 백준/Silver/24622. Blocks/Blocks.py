@@ -1,5 +1,11 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
-str = [input() for _ in range(4)]
+str = []
+for _ in range(4):
+    str.append(input().rstrip())
+
 strSet = set()
 for a in range(4):
     for b in range(4):
@@ -19,8 +25,9 @@ for a in range(4):
                             strSet.add(s1+s2+s3)
                             for s4 in str[d]:
                                 strSet.add(s1+s2+s3+s4)
-for i in range(n):
-    if (input() in strSet):
+for _ in range(n):
+    chr = input().rstrip()
+    if (chr in strSet):
         print("YES")
     else:
         print("NO")
