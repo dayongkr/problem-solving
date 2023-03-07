@@ -1,21 +1,13 @@
-int countPrimes(int n)
-{
-  int result = 0;
-  int *arr = (int *)calloc(n + 1, sizeof(int));
-
-  for (int i = 2; i < n; i++)
-  {
-    if (!arr[i])
-    {
-      result++;
-      int j = 2;
-      while (i * j <= n)
-      {
-        arr[i * j] = 1;
-        j++;
-      }
-    }
+int isPrime[5000001];
+int countPrimes(int n){
+  int i;
+  for(i = 2; i < n; i++) isPrime[i] = 1;
+  for(i = 2; i * i < n; i++) {
+    if(!isPrime[i]) continue;
+    // i is a prime, remove its multiples
+    for(int j = i * i; j < n; j += i) isPrime[j] = 0; 
   }
-  free(arr);
-  return result;
+  int count = 0;
+  for(i = 2; i < n; i++) count += isPrime[i];
+  return count;
 }
