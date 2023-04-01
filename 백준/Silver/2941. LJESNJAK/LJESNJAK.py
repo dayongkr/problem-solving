@@ -8,6 +8,6 @@ str = input().rstrip()
 count = 0
 
 for s in special_str:
-    count += str.count(s)
+    str = str.replace(s, '*')
 
-print(len(str) - count)
+print(len(str))
