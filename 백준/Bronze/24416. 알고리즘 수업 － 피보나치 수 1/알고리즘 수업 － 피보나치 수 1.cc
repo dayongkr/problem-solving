@@ -1,22 +1,18 @@
 #include <iostream>
 using namespace std;
 
-int r1 = 0;
-
-int rec(int n) {
-    if (n == 1 || n == 2){
-        r1 += 1;
-        return 1;
-    }
-    return rec(n-1) + rec(n-2);
-}
-
 int main() {
     int n, r2;
     cin >> n;
     r2 = n - 2;
-    rec(n);
-    cout << r1 << " " << r2;
+    int dp[41] = {0,};
+    dp[1] = dp[2] = 1;
+
+    for (int i = 3; i <= n; i++) {
+        dp[i] = dp[i-1] + dp[i-2];
+    }
+
+    cout << dp[n] << " " << r2;
 
     return 0;
 }
