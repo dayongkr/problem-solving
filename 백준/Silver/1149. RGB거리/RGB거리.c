@@ -3,13 +3,18 @@
 #define MIN(a, b)  a >= b ? b : a
 
 int main(void) {
-    int n, dp[1001][3];
+    int n, dp[3], r, g, b;
     scanf("%d", &n);
-    for (int i = 1; i <= n; i++) scanf("%d %d %d", &dp[i][0], &dp[i][1], &dp[i][2]);
-    for (int i = 2; i <= n; i++) {
-        dp[i][0] += MIN(dp[i - 1][1], dp[i - 1][2]);
-        dp[i][1] += MIN(dp[i - 1][0], dp[i - 1][2]);
-        dp[i][2] += MIN(dp[i - 1][0], dp[i - 1][1]);
+    for (int i = 1; i <= n; i++) {
+        scanf("%d %d %d", &r, &g, &b);
+        if (i != 1) {
+            r += MIN(dp[1], dp[2]);
+            g += MIN(dp[0], dp[2]);
+            b += MIN(dp[0], dp[1]);
+        }
+        dp[0] = r;
+        dp[1] = g;
+        dp[2] = b;
     }
-    printf("%d", MIN(dp[n][0], (MIN(dp[n][1], dp[n][2]))));
+    printf("%d", MIN(dp[0], (MIN(dp[1], dp[2]))));
 }
