@@ -3,11 +3,11 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-card = list(map(int, input().split(" ")))
+card = input().rstrip().split(" ")
 m = int(input())
-target = list(map(int, input().split(" ")))
+target = input().rstrip().split(" ")
 
-d = dict()
+d = {}
 
 for item in card:
     if d.get(item):
@@ -16,4 +16,5 @@ for item in card:
         d[item] = 1
 
 for item in target:
-    print(d.get(item) if d.get(item) else 0, end=" ")
+    item = d.get(item)
+    print(item if item else 0, end=" ")
