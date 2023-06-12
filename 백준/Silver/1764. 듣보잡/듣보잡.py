@@ -3,17 +3,6 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split(" "))
-
-a = set()
-b = set()
-
-for _ in range(n):
-    a.add(input().strip())
-
-for _ in range(m):
-    b.add(input().strip())
-
-c = sorted(a & b)
+c = sorted(set(input().rstrip() for _ in range(n)) & set(input().rstrip() for _ in range(m)))
 print(len(c))
-for item in c:
-    print(item)
+print(*c, sep="\n")
