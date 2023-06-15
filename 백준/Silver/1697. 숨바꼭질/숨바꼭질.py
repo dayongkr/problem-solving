@@ -1,14 +1,15 @@
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 a, b = map(int, input().split())
-queue = list()
+queue = deque()
 out = [1 for _ in range(100001)]
 
 queue.append([a, 0])
 
 while True:
-    c = queue.pop(0)
+    c = queue.popleft()
     if c[0] == b:
         print(c[1])
         break
