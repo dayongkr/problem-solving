@@ -1,33 +1,29 @@
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 
 n = int(input())
 f = int(input())
 
-d = {}
-visited = []
-queue = []
+d = [[] for _ in range(n + 1)]
+visited = [0 for _ in range(n + 1)]
+count = 0
+queue = deque()
 
 for _ in range(f):
     a, b = map(int, input().split())
-    if a in d:
-        d[a].add(b)
-    else:
-        d[a] = {b}
-
-    if b in d:
-        d[b].add(a)
-    else:
-        d[b] = {a}
+    d[a].append(b)
+    d[b].append(a)
 
 queue.append(d[1])
+visited[1] = 1
 
-while len(queue) != 0:
-    temp = queue.pop(0)
-    for item in temp:
-        if item not in visited:
-            visited.append(item)
+while queue:
+    for item in queue.popleft():
+        if visited[item] == 0:
+            visited[item] = 1
+            count += 1
             queue.append(d[item])
 
-print(len(visited) - 1)
+print(count)
