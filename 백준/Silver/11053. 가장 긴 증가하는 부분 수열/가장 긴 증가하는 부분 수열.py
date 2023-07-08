@@ -5,7 +5,6 @@ input = sys.stdin.readline
 N = int(input())
 arr = list(map(int, input().split()))
 dp = [1 for _ in range(1001)]
-MAX_result = 1
 
 for i in range(1, N):
     MAX = 1
@@ -13,6 +12,5 @@ for i in range(1, N):
         if arr[i] > arr[j]:
             MAX = max(MAX, dp[arr[j]] + 1)
     dp[arr[i]] = MAX
-    MAX_result = max(MAX_result, MAX)
 
-print(MAX_result)
+print(max(dp))
