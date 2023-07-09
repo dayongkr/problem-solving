@@ -10,6 +10,6 @@ while B > 0:
     if B % 2:
         result = result * A % C
     A = (A % C) * (A % C) % C
-    B //= 2
+    B = B >> 1
 
 print(result % C)
