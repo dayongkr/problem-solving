@@ -3,7 +3,8 @@
 
 using namespace std;
 
-int N, K, dp[101][100001];
+int N, K;
+int dp[101][100001];
 pair<int, int> items[101];
 
 int main() {
@@ -17,8 +18,6 @@ int main() {
         cin >> W >> V;
         items[i] = make_pair(W, V);
     }
-
-    fill_n(&dp[0][0], 101 * 100001, 0);
 
     for (int i = 1; i <= N; i++)
         for (int j = 1; j <= K; j++) {
