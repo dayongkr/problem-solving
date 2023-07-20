@@ -3,8 +3,7 @@
 
 using namespace std;
 
-int N, K;
-int dp[101][100001];
+int N, K, dp[101][100001];
 pair<int, int> items[101];
 
 int main() {
