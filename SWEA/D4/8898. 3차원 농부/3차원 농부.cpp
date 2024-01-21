@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<int> horse(500000), cow(500000);
+vector<int> horse, cow;
 
 int main() {
     ios_base::sync_with_stdio(false);
