@@ -1,44 +1,36 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
-
-vector<int> days, spaces;
-int spaceCnt;
+#define MAX 200'000
+int spaces[MAX], days[MAX];
 
 int main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    int test_case, T, N, P;
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    int test_case;
+    int T;
     cin >> T;
     for (test_case = 1; test_case <= T; ++test_case) {
-        days.clear();
-        spaces.clear();
-        int temp, result = 0;
-        spaceCnt = 0;
-        cin >> N >> P;
-        for (int i = 0; i < N; i++) {
-            cin >> temp;
-            days.push_back(temp);
-        }
-        spaces.push_back(0);
-
+        int N, P, temp, prev = 0, result = 0, total_space = 0;
+        cin >> N >> P >> temp;
+        days[0] = temp;
+        spaces[0] = 0;
+        prev = temp;
         for (int i = 1; i < N; i++) {
-            spaceCnt += days[i] - days[i - 1] - 1;
-            spaces.push_back(spaceCnt);
+            cin >> temp;
+            days[i] = temp;
+            spaces[i] = total_space += temp - prev - 1;
+            prev = temp;
         }
         for (int i = 0; i < N; i++) {
-            int left = i, right = N - 1, mid = 0, cur;
-            temp = 0;
-            while (left <= right) {
-                mid = left + (right - left) / 2;
-                cur = spaces[mid] - spaces[i];
-                if (cur <= P) {
-                    temp = days[mid] - days[i] + 1 + P - cur;
-                    left = mid + 1;
-                } else right = mid - 1;
+            int l = i, r = N - 1, temp = 0;
+            while (l <= r) {
+                int mid = l + (r - l) / 2, space = spaces[mid] - spaces[i];
+                if (space <= P) {
+                    temp = days[mid] - days[i] + P - space + 1;
+                    l = mid + 1;
+                } else r = mid - 1;
             }
             result = max(result, temp);
         }
