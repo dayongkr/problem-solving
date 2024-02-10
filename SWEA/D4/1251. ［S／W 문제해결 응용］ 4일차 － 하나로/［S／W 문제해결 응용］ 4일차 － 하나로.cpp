@@ -3,13 +3,13 @@
 using namespace std;
 
 int x[1000], y[1000], visited[1000];
-priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> pq;
+long long dist[1000];
 
 int main() {
     int T;
     cin >> T;
     for (int t = 1; t <= T; t++) {
-        int N, temp, visit_cnt = 0;
+        int N, temp;
         double E, ret = 0;
         cin >> N;
         for (int i = 0; i < N; i++) {
@@ -22,22 +22,22 @@ int main() {
         }
         cin >> E;
         // get MST
-        pq = {};
         memset(visited, 0, sizeof(visited));
-        pq.emplace(0, 0);
-        while (!pq.empty()) {
-            if (visit_cnt == N) break;
-            auto [cur_dist, cur] = pq.top();
-            pq.pop();
-            if (visited[cur]) continue;
-            visited[cur] = 1;
-            visit_cnt++;
-            ret += (double) cur_dist;
-            for (int i = 0; i < N; i++) {
-                if (visited[i]) continue;
-                int x1 = x[cur], y1 = y[cur], x2 = x[i], y2 = y[i];
-                pq.emplace(1LL * (x1 - x2) * (x1 - x2) + 1LL * (y1 - y2) * (y1 - y2), i);
+        fill(dist, dist + 1000, INT64_MAX);
+        int cur = 0;
+        visited[0] = 1;
+        for (int i = 0; i < N - 1; i++) {
+            for (int j = 0; j < N; j++)
+                if (!visited[j])
+                    dist[j] = min(dist[j], 1LL * (x[cur] - x[j]) * (x[cur] - x[j]) +
+                                           1LL * (y[cur] - y[j]) * (y[cur] - y[j]));
+            cur = -1;
+            for (int j = 0; j < N; j++) {
+                if (visited[j])continue;
+                if (cur == -1 || dist[cur] > dist[j]) cur = j;
             }
+            visited[cur] = 1;
+            ret += (double) dist[cur];
         }
         cout << fixed << setprecision(0) << '#' << t << ' ' << ret * E << '\n';
     }
