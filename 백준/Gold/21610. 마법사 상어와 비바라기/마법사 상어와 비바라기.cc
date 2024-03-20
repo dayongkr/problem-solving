@@ -30,10 +30,10 @@ int main() {
             {1,  -1},
             {1,  1}
     },
+            MAP[50][50],
             result = 0, time = 0;
 
-    vector<pair<int, int>> cloud[2]; // {0, 1} = x: 0, y: 1
-
+    vector<pair<int, int>> cloud[2];// {0, 1} = x: 0, y: 1
     cin >> N >> M;
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++) {
@@ -54,39 +54,34 @@ int main() {
         ty = direction[d][1] * s;
         time = !time;
         cloud[time].clear(); // clear current cloud
+        memset(MAP, 0, sizeof(MAP));
         for (auto &[x, y]: cloud[!time]) { // use prev cloud
             x += tx; // move all clouds
             y += ty;
-            if (x < 0 || x >= N) x = adjust(N, x); // adjust position
+            if (x < 0 || x >= N) x = adjust(N, x);// adjust position
             if (y < 0 || y >= N) y = adjust(N, y);
             A[y][x]++; // increase 1
             result++;
+            MAP[y][x] = 1;
         }
         for (auto [x, y]: cloud[!time]) {
+            int t = 0;
             for (auto &j: diagonal) { // check diagonal
                 int nx = x + j[0], ny = y + j[1];
                 if (nx >= 0 && nx < N && ny >= 0 && ny < N && A[ny][nx]) {
-                    A[y][x]++;
-                    result++;
+                    t++;
                 }
             }
+            A[y][x] += t;
+            result += t;
         }
 
         for (int j = 0; j < N; j++)
             for (int k = 0; k < N; k++) {
-                int can = 1;
-                if (A[j][k] < 2) continue;
-                for (auto [xx, yy]: cloud[!time]) {
-                    if (xx == k && yy == j) {
-                        can = 0;
-                        break;
-                    }
-                }
-                if (can) {
-                    A[j][k] -= 2;
-                    result -= 2;
-                    cloud[time].emplace_back(k, j);
-                }
+                if (A[j][k] < 2 || MAP[j][k]) continue;
+                A[j][k] -= 2;
+                result -= 2;
+                cloud[time].emplace_back(k, j);
             }
     }
 
