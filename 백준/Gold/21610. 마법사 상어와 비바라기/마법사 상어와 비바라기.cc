@@ -31,12 +31,15 @@ int main() {
             {1,  1}
     },
             result = 0, time = 0;
+
     vector<pair<int, int>> cloud[2]; // {0, 1} = x: 0, y: 1
 
     cin >> N >> M;
     for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
+        for (int j = 0; j < N; j++) {
             cin >> A[i][j];
+            result += A[i][j];
+        }
 
     cloud[time].emplace_back(0, N - 1);
     cloud[time].emplace_back(1, N - 1);
@@ -57,11 +60,15 @@ int main() {
             if (x < 0 || x >= N) x = adjust(N, x); // adjust position
             if (y < 0 || y >= N) y = adjust(N, y);
             A[y][x]++; // increase 1
+            result++;
         }
         for (auto [x, y]: cloud[!time]) {
             for (auto &j: diagonal) { // check diagonal
                 int nx = x + j[0], ny = y + j[1];
-                if (nx >= 0 && nx < N && ny >= 0 && ny < N && A[ny][nx]) A[y][x]++;
+                if (nx >= 0 && nx < N && ny >= 0 && ny < N && A[ny][nx]) {
+                    A[y][x]++;
+                    result++;
+                }
             }
         }
 
@@ -77,13 +84,11 @@ int main() {
                 }
                 if (can) {
                     A[j][k] -= 2;
+                    result -= 2;
                     cloud[time].emplace_back(k, j);
                 }
             }
     }
-    for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
-            result += A[i][j];
 
     cout << result;
     return 0;
