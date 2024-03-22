@@ -7,7 +7,6 @@ int solution(vector<int> citations) {
     int s = citations.size(), answer = 0, p =0;
     for(int i = 0; i <= 1000; i++) {
         while(i > citations[p]) p++;
-        cout << p << '\n';
         if(s - p >= i) answer = i;
     }
     return answer;
