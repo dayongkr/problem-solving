@@ -3,11 +3,11 @@ class Solution:
         word1_len = len(word1)
         word2_len = len(word2)
         max_length = max(word1_len, word2_len)
-        result = ""
+        result = []
         for i in range(max_length):
             if(i < word1_len):
-                result += word1[i]
+                result.append(word1[i])
             if(i < word2_len):
-                result += word2[i]
-        return result
+                result.append(word2[i])
+        return ''.join(result)
         
