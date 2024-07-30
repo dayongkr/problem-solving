@@ -4,21 +4,15 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def rec(self, prev: Optional[ListNode], head: Optional[ListNode]) -> Optional[ListNode]:
-        if head.next == None:
-            head.next = prev
-            return head
-
-        next_head = head.next
-        head.next = prev
-
-        return self.rec(head, next_head)
-        
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head == None or head.next == None:
-            return head
+        prev = None
 
-        next_head = head.next
-        head.next = None
+        while head:
+            next_head = head.next
 
-        return self.rec(head, next_head)
+            head.next= prev
+
+            prev = head
+            head = next_head
+
+        return prev
