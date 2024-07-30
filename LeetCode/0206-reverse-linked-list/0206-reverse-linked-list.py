@@ -15,7 +15,7 @@ class Solution:
         return self.rec(head, next_head)
         
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head == None:
+        if head == None or head.next == None:
             return head
 
         next_head = head.next
