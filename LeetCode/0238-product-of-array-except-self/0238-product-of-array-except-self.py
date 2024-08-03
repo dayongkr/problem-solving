@@ -10,8 +10,6 @@ class Solution:
         for i in range(n):
             prefix.append(nums[i] * prefix[i])
             suffix.append(nums[n - i - 1] * suffix[i])
-        print(prefix)
-        print(suffix)
 
         result = []
 
