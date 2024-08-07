@@ -3,12 +3,12 @@ import heapq
 class SmallestInfiniteSet:
 
     def __init__(self):
-        self.heap = list(range(1, 2000))
+        self.heap = list(range(1, 1001))
         heapq.heapify(self.heap)
 
     def popSmallest(self) -> int:
         smallest = heapq.heappop(self.heap)
-        while smallest == self.heap[0]:
+        while self.heap and smallest == self.heap[0]:
             heapq.heappop(self.heap)
         return smallest
         
