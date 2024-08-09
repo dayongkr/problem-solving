@@ -18,7 +18,7 @@ class Solution:
                 return root.left
             elif not root.left:
                 return root.right
-            else:
+            elif root.left and root.right:
                 temp = root.right
 
                 while temp.left:
