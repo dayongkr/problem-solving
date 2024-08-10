@@ -3,9 +3,9 @@ class Solution:
         first = second = 2e31 - 1
 
         for num in nums:
-            if num < first:
+            if num <= first:
                 first = num
-            elif num < second:
+            elif num <= second:
                 second = num
             elif num > second:
                 return True
