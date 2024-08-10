@@ -7,7 +7,7 @@ class Solution:
                 first = num
             elif first < num < second:
                 second = num
-            elif num > second > first:
+            elif first < second < num:
                 return True           
         
         return False
