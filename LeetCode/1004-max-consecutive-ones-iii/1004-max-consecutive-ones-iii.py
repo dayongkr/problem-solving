@@ -13,7 +13,7 @@ class Solution:
                 k -= 1
             
             result = max(right - left + 1, result)
-            right += 1
+            right = max(left, right + 1)
 
 
         return result
