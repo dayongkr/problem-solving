@@ -35,8 +35,8 @@ class Solution:
                     if cur != 0:
                         queue.append((nr, nc, nm))
                         grid[nr][nc] = 0
-            
-                if freshOrange == 0:
-                    return nm
+        
+            if freshOrange == 0:
+                return nm
 
         return -1
