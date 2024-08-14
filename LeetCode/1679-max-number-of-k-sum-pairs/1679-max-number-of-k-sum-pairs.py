@@ -1,22 +1,20 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
+        needs = {}
         cnt = 0
-        nums = list(sorted(nums))
-        left, right = 0, len(nums) - 1
 
-
-        while left < right:
-            leftNum, rightNum = nums[left], nums[right]
-            sumResult = leftNum + rightNum
-
-            if sumResult == k:
-                left += 1
-                right -= 1
-                cnt += 1
-            elif sumResult > k:
-                right -= 1
-            else:
-                left += 1
-
+        for num in nums:
+            need = k - num
+            print(need)
+            if need > 0:
+                if need in needs:
+                    cnt += 1
+                    needs[need] -= 1
+                    if needs[need] == 0:
+                        del(needs[need])
+                elif num in needs:
+                    needs[num] += 1
+                else:
+                    needs[num] = 1
 
         return cnt
