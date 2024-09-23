@@ -1,10 +1,5 @@
 from collections import Counter
 def solution(participant, completion):
-    participant_count =  Counter(participant)
+    count =  Counter(participant) - Counter(completion)
 
-    for person in completion:
-        participant_count[person] -= 1
-    
-    for person in participant_count:
-        if participant_count[person] > 0:
-            return person
+    return list(count.keys())[0]
