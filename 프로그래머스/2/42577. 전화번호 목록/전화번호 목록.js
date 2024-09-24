@@ -1,22 +1,27 @@
 class Node {
     isEnd = false
-    children = new Map()
+    children = Array(10)
 }
 
 class Trie {
     constructor() {
-        this.root = new Node()
+        this.pool = [new Node()]
     }
 
     insert(string) {
-        let cur = this.root
+        let cur = this.pool[0]
 
-        for (const char of string) {
-            if (!cur.children.has(char)) {
-                cur.children.set(char, new Node())
+        for (let i = 0; i < string.length; i++) {
+            const char = string[i]
+            
+            if (!cur.children[Number(char)]) {
+                cur.children[Number(char)] = this.pool.length
+                this.pool.push(new Node())
+            } else if (i === string.length - 1) {
+                return true
             }
 
-            cur = cur.children.get(char)
+            cur = this.pool[cur.children[Number(char)]]
 
             if (cur.isEnd){
                 return true
@@ -25,7 +30,7 @@ class Trie {
 
         cur.isEnd = true
 
-        return Boolean(cur.children.size)
+        return false
     }
 
 
