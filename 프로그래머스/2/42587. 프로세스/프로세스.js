@@ -12,6 +12,7 @@ function solution(priorities, location) {
     
     while (arr) {
         const top = shift();
+        
         if (arr.some(item => item !== -1 && priorities[item] > priorities[top])) {
             arr.push(top)
         } else if (top === location) {
