@@ -9,6 +9,6 @@ def solution(progresses, speeds):
             answer[-1] += 1
         else:
             answer.append(1)
-            days = ceil(100 - progress) / speed
+            days = ceil((100 - progress) / speed)
     
     return answer
