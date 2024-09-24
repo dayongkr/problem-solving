@@ -1,20 +1,20 @@
 function solution(priorities, location) {
-    const arr = priorities.map((priority, index) => [priority, index]);
+    const arr = priorities.map((_, index) => index)
     let count = 1, start = 0
     
     function shift() {
-        const result = arr[start].slice()
+        const result = arr[start]
         
-        arr[start++][0] = 0
+        arr[start++] = -1
         
         return result
     }
     
     while (arr) {
         const top = shift();
-        if (arr.some(item => item[0] > top[0])) {
+        if (arr.some(item => item !== -1 && priorities[item] > priorities[top])) {
             arr.push(top)
-        } else if (top[1] === location) {
+        } else if (top === location) {
             return count
         } else {
             count += 1
