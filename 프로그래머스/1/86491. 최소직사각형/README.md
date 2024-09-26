@@ -1,10 +1,10 @@
 # [level 1] 최소직사각형 - 86491 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/86491?language=cpp) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/86491?language=javascript) 
 
 ### 성능 요약
 
-메모리: 5.13 MB, 시간: 0.90 ms
+메모리: 38.4 MB, 시간: 6.75 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 03월 21일 22:23:51
+2024년 09월 26일 11:45:27
 
 ### 문제 설명
 
