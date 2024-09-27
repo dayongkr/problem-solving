@@ -1,5 +1,11 @@
-nums = list(map(int, input().split(" ")))
+import sys
 
-for num in list(map(int, input().split(" "))):
-    if nums[1] > num:
-        print(num, end=" ")
+input = sys.stdin.readline
+
+N, X = map(int, input().split())
+nums = map(int, input().split())
+
+result = filter(lambda x: x < X, nums)
+
+for num in result:
+    print(num, end=" ")
