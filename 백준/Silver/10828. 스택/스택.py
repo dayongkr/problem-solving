@@ -1,27 +1,21 @@
 import sys
+
 input = sys.stdin.readline
 
-n = int(input().rstrip())
-arr = []
+N = int(input().rstrip())
+stack = []
 
-for i in range(n):
-    a = input().rstrip().split(" ")
-    if a[0] == "push":
-        arr.append(int(a[1]))
-    elif a[0] == "top":
-        if len(arr):
-            print(arr[len(arr)-1])
-        else:
-            print(-1)
-    elif a[0] == "size":
-        print(len(arr))
-    elif a[0] == "empty":
-        if len(arr):
-            print(0)
-        else:
-            print(1)
-    elif a[0] == "pop":
-        if len(arr):
-            print(arr.pop())
-        else:
-            print(-1)
+for _ in range(N):
+    command = input().rstrip().split()
+    type = command[0]
+
+    if type == 'push':
+        stack.append(int(command[1]))
+    elif type == 'pop':
+        print(stack.pop() if stack else -1)
+    elif type == 'size':
+        print(len(stack))
+    elif type == 'empty':
+        print(0 if stack else 1)
+    elif type == 'top':
+        print(stack[-1] if stack else -1)
