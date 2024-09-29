@@ -6,27 +6,22 @@ N = int(input())
 
 nums = list(map(lambda x: (x[0], int(x[1])),
             enumerate(input().rstrip().split())))
-temps = [nums.pop()]
+stack = [nums.pop()]
 result = [0 for _ in range(N)]
 
-while nums:
-    curIndex, curHeight = nums.pop()
-
-    while temps:
-        tempIndex, tempHeight = temps[-1]
+for curIndex, curHeight in reversed(nums):
+    while stack:
+        tempIndex, tempHeight = stack[-1]
 
         if curHeight > tempHeight:
             result[tempIndex] = curIndex + 1
-            temps.pop()
+            stack.pop()
         else:
             break
+    stack.append((curIndex, curHeight))
 
-    temps.append((curIndex, curHeight))
 
-
-while temps:
-    curIndex, _ = temps.pop()
+for curIndex, _ in stack:
     result[curIndex] = 0
 
-for num in result:
-    print(num, end=" ")
+print(*result)
