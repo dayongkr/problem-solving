@@ -4,70 +4,35 @@
 
 ### 성능 요약
 
-메모리: 6688 KB, 시간: 64 ms
+메모리: 31900 KB, 시간: 64 ms
 
 ### 분류
 
 자료 구조, 구현, 스택
 
+### 제출 일자
+
+2024년 9월 29일 20:09:36
+
 ### 문제 설명
 
-<p>Your boss has asked you to add up a sequence of positive numbers to determine how much money your company made last year.</p>
+<p>나코더 기장 재민이는 동아리 회식을 준비하기 위해서 장부를 관리하는 중이다.</p>
 
-<p>Unfortunately, your boss reads out numbers incorrectly from time to time.</p>
+<p>재현이는 재민이를 도와서 돈을 관리하는 중인데, 애석하게도 항상 정신없는 재현이는 돈을 실수로 잘못 부르는 사고를 치기 일쑤였다.</p>
 
-<p>Fortunately, your boss realizes when an incorrect number is read and says “zero”, meaning “ignore the current last number.”</p>
+<p>재현이는 잘못된 수를 부를 때마다 0을 외쳐서, 가장 최근에 재민이가 쓴 수를 지우게 시킨다.</p>
 
-<p>Unfortunately, your boss can make repeated mistakes, and says “zero” for each mistake.</p>
-
-<p>For example, your boss may say “One, three, five, four, zero, zero, seven, zero, zero, six”, which means the total is 7 as explained in the following chart:</p>
-
-<table class="table table-bordered" style="width:60%">
-	<thead>
-		<tr>
-			<th>Boss statement(s)</th>
-			<th>Current numbers</th>
-			<th>Explanation</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>“One, three, five, four”</td>
-			<td>1, 3, 5, 4</td>
-			<td>Record the first four numbers.</td>
-		</tr>
-		<tr>
-			<td>“zero, zero“</td>
-			<td>1, 3</td>
-			<td>Ignore the last two numbers.</td>
-		</tr>
-		<tr>
-			<td>“seven”</td>
-			<td>1, 3, 7</td>
-			<td>Record the number 7 at the end of our list.</td>
-		</tr>
-		<tr>
-			<td>“zero, zero”</td>
-			<td>1</td>
-			<td>Ignore the last two numbers.</td>
-		</tr>
-		<tr>
-			<td>“six”</td>
-			<td>1, 6</td>
-			<td>We have read all numbers, and the total is 7.</td>
-		</tr>
-	</tbody>
-</table>
-
-<p>At any point, your boss will have said at least as many positive numbers as “zero” statements. If all positive numbers have been ignored, the sum is zero.</p>
-
-<p>Write a program that reads the sequence of boss statements and computes the correct sum.</p>
+<p>재민이는 이렇게 모든 수를 받아 적은 후 그 수의 합을 알고 싶어 한다. 재민이를 도와주자!</p>
 
 ### 입력 
 
- <p>The first line of input contains the integer K (1 ≤ K ≤ 100 000) which is the number of integers (including “zero”) your boss will say. On each of the next K lines, there will either be one integer between 1 and 100 (inclusive), or the integer 0.</p>
+ <p>첫 번째 줄에 정수 K가 주어진다. (1 ≤ K ≤ 100,000)</p>
+
+<p>이후 K개의 줄에 정수가 1개씩 주어진다. 정수는 0에서 1,000,000 사이의 값을 가지며, 정수가 "0" 일 경우에는 가장 최근에 쓴 수를 지우고, 아닐 경우 해당 수를 쓴다.</p>
+
+<p>정수가 "0"일 경우에 지울 수 있는 수가 있음을 보장할 수 있다.</p>
 
 ### 출력 
 
- <p>The output is one line, containing the integer which is the correct sum of the integers read, taking the “zero” statements into consideration. You can assume that the output will be an integer in the range 0 and 1 000 000 (inclusive).</p>
+ <p>재민이가 최종적으로 적어 낸 수의 합을 출력한다. 최종적으로 적어낸 수의 합은 2<sup>31</sup>-1보다 작거나 같은 정수이다.</p>
 
