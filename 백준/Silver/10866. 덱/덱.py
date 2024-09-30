@@ -1,40 +1,27 @@
 import sys
+from collections import deque
+
 input = sys.stdin.readline
 
-n = int(input().rstrip())
-arr = []
+N = int(input())
+queue = deque()
 
-for i in range(n):
-    a = input().rstrip().split(" ")
-    if a[0] == "push_front":
-        arr.insert(0, int(a[1]))
-    elif a[0] == "push_back":
-        arr.append(int(a[1]))
-    elif a[0] == "front":
-        if len(arr):
-            print(arr[0])
-        else:
-            print(-1)
-    elif a[0] == "back":
-        if len(arr):
-            print(arr[len(arr)-1])
-        else:
-            print(-1)
-    elif a[0] == "size":
-        print(len(arr))
-    elif a[0] == "empty":
-        if len(arr):
-            print(0)
-        else:
-            print(1)
-    elif a[0] == "pop_front":
-        if len(arr):
-            print(arr[0])
-            arr = arr[1:]
-        else:
-            print(-1)
-    elif a[0] == "pop_back":
-        if len(arr):
-            print(arr.pop())
-        else:
-            print(-1)
+for _ in range(N):
+    command = input().split()
+
+    if command[0] == 'push_front':
+        queue.appendleft(int(command[1]))
+    elif command[0] == 'push_back':
+        queue.append(int(command[1]))
+    elif command[0] == 'pop_front':
+        print(queue.popleft() if queue else -1)
+    elif command[0] == 'pop_back':
+        print(queue.pop() if queue else -1)
+    elif command[0] == 'size':
+        print(len(queue))
+    elif command[0] == 'empty':
+        print(0 if queue else 1)
+    elif command[0] == 'front':
+        print(queue[0] if queue else -1)
+    elif command[0] == 'back':
+        print(queue[-1] if queue else - 1)
