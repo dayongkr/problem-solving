@@ -6,7 +6,6 @@ N, M = map(int, input().split())
 nums = list(map(int, input().split()))
 arr = [0 for _ in range(M)]
 visited = [False for _ in range(N)]
-visited2 = [[False for _ in range(10001)] for _ in range(N)]
 
 nums.sort()
 
@@ -20,18 +19,17 @@ def rec(m):
         print()
         return
 
+    temp = 0
+
     for i in range(N):
-        if visited[i] or visited2[m][nums[i]]:
+        if visited[i] or temp == nums[i]:
             continue
 
         arr[m] = nums[i]
         visited[i] = True
-        visited2[m][nums[i]] = True
+        temp = nums[i]
         rec(m + 1)
         visited[i] = False
-
-    for num in nums:
-        visited2[m][num] = False
 
 
 rec(0)
